@@ -9,9 +9,9 @@ set(QT6_VERSION 6.5.3)
 set(BUILD_PATH ${CMAKE_BINARY_DIR})
 set(QT6_PATH ${BUILD_PATH}/.Qt/${QT6_VERSION}/gcc_64)
 
-# execute_process(
-#   COMMAND bash ${CMAKE_CURRENT_LIST_DIR}/qt6_installer.bash ${QT6_VERSION} ${BUILD_PATH}
-# )
+execute_process(
+  COMMAND bash ${CMAKE_CURRENT_LIST_DIR}/qt6_installer.bash ${QT6_VERSION} ${BUILD_PATH}
+)
 
 macro(lib_installer file_path file_name)
     file(GLOB FILE_PATH ${file_path}/*${file_name}*)
