@@ -18,7 +18,7 @@
 #include "StaticMesh.hpp"
 #include "Texture2d.hpp"
 
-#include "sip_hash.hpp"
+#include "siphash/sip_hash.hpp"
 
 #include <unordered_map>
 

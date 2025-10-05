@@ -8,6 +8,11 @@
   <license>MIT</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>glm_vendor</buildtool_depend>
+  <buildtool_depend>glad_vendor</buildtool_depend>
+  <buildtool_depend>webots_external</buildtool_depend>
+
+  <exec_depend>glad_vendor</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

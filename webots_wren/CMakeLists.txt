@@ -7,9 +7,42 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(glm_vendor REQUIRED)
+find_package(glad_vendor REQUIRED)
+find_package(webots_external REQUIRED)
+find_package(Freetype REQUIRED)
+
+add_compile_definitions(
+  GLM_ENABLE_EXPERIMENTAL
+)
+
+ament_export_include_directories(include/${PROJECT_NAME})
+ament_export_libraries(wren)
+
+file(GLOB SRCS src/*.cpp)
+
+add_library(wren
+  ${SRCS}
+)
+
+include_directories(
+    ${CMAKE_CURRENT_LIST_DIR}/include/${PROJECT_NAME}
+    ${FREETYPE_INCLUDE_DIRS}
+)
+
+ament_target_dependencies(wren
+  glm_vendor
+  glad_vendor
+  webots_external
+)
+
+install(TARGETS wren
+  RUNTIME DESTINATION lib
+)
+
+install(DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION include/${PROJECT_NAME}
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
