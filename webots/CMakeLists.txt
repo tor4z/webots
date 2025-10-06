@@ -7,9 +7,32 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(qt6_vendor REQUIRED)
+find_package(webots_wren REQUIRED)
+
+file(GLOB_RECURSE SRCS src *.cpp)
+
+include_directories(
+  ${CMAKE_CURRENT_LIST_DIR}/include
+  ${CMAKE_CURRENT_LIST_DIR}/src/nodes
+  ${CMAKE_CURRENT_LIST_DIR}/src/nodes/utils
+  ${CMAKE_CURRENT_LIST_DIR}/src/vrml
+  ${CMAKE_CURRENT_LIST_DIR}/src/maths
+  ${CMAKE_CURRENT_LIST_DIR}/src/core
+  ${CMAKE_CURRENT_LIST_DIR}/src/engine
+  ${CMAKE_CURRENT_LIST_DIR}/src/wren
+  ${CMAKE_CURRENT_LIST_DIR}/src/ode
+  ${CMAKE_CURRENT_LIST_DIR}/src/control
+)
+
+add_executable(${PROJECT_NAME}
+  ${SRCS}
+)
+
+ament_target_dependencies(${PROJECT_NAME}
+  qt6_vendor
+  webots_wren
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

@@ -2,14 +2,44 @@ cmake_minimum_required(VERSION 3.8)
 project(webots_controller)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-  add_compile_options(-Wall -Wextra -Wpedantic)
+  # add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
+
+add_compile_definitions(
+  LIBCONTROLLER_VERSION="R2025a"
+)
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(stb_vendor REQUIRED)
+find_package(webots_plugins REQUIRED)
+
+ament_export_include_directories(include/${PROJECT_NAME})
+ament_export_libraries(controller)
+
+include_directories(
+  ${CMAKE_CURRENT_LIST_DIR}/include/${PROJECT_NAME}
+)
+
+file(GLOB_RECURSE SRCS src *.c)
+
+add_library(controller SHARED
+  ${SRCS}
+)
+
+ament_target_dependencies(controller
+  stb_vendor
+  webots_plugins
+)
+
+install(TARGETS controller
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+)
+
+install(DIRECTORY include/
+  DESTINATION include
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

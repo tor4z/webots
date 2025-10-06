@@ -9,6 +9,12 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
+  <build_depend>qt6_vendor</build_depend>
+  <build_depend>webots_wren</build_depend>
+
+  <exec_depend>qt6_vendor</exec_depend>
+  <exec_depend>webots_wren</exec_depend>
+
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 
