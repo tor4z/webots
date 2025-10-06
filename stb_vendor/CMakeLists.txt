@@ -8,7 +8,7 @@ ament_export_include_directories(include/${PROJECT_NAME})
 file(GLOB STB_HEADERS stb/*.h)
 
 install(FILES ${STB_HEADERS}
-  DESTINATION include/${PROJECT_NAME}/stb
+  DESTINATION include/${PROJECT_NAME}
 )
 
 ament_package()
